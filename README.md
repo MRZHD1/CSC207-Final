@@ -10,3 +10,6 @@ We are thinking of developing a weather app. One that uses meteo matics as an AP
 # Link to the meteo matics API:
 https://www.meteomatics.com/en/api/getting-started/?ppc_keyword=weather%20api&utm_term=weather%20api&utm_campaign=Weather+API+(Canada)&utm_source=adwords&utm_medium=ppc&hsa_acc=5001518620&hsa_cam=16948945578&hsa_grp=134395075854&hsa_ad=593581821319&hsa_src=g&hsa_tgt=kwd-13737666095&hsa_kw=weather%20api&hsa_mt=p&hsa_net=adwords&hsa_ver=3&gclid=CjwKCAjwseSoBhBXEiwA9iZtxtpaijZ1jdeIJXPdjrrVUNmiFfvmgUzizhD-_fBqjiQzek1avGxFJhoCmKEQAvD_BwE
 
+# POSTMAN API Screenshot
+
+![image](https://github.com/MRZHD1/CSC207-Final/assets/141948685/a675a356-50ab-47a9-86be-23086ca2eec6)
