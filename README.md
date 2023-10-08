@@ -62,10 +62,18 @@ As a customer, I want to be able to access information about a specific spot on 
 
 
 **_ User Story #2(Akhil) - Researching Spots to Go To_**
-As a traveler, I want to be able to input a list of spots I want to visit with their names, geographical coordinates, and optional descriptions. on top of this, I want the Travel Route Planner to calculate the most efficient route for visiting all these spots based on my preferences, such as the shortest distance or quickest time. After the calculation, I want to see a map displaying the optimized route with markers for each spot, a list of the spots in the optimized order, and the total distance or estimated travel time for the route. Additionally, I would like turn-by-turn directions between each spot. This will help me plan my trips more efficiently and enjoy my travel experience.
+As a traveler, I want to be able to input a list of spots I want to visit with their names, geographical coordinates, 
+and optional descriptions. on top of this, I want the Travel Route Planner to calculate the most efficient route for 
+visiting all these spots based on my preferences, such as the shortest distance or quickest time. After the calculation,
+I want to see a map displaying the optimized route with markers for each spot, a list of the spots in the optimized 
+order, and the total distance or estimated travel time for the route. Additionally, I would like turn-by-turn directions 
+between each spot. This will help me plan my trips more efficiently and enjoy my travel experience.
 
 
-**_ User Story #3 - Researching Spots to Go To_**
+**_ User Story #3(Lola) - Researching Spots to Go To_**
+As someone who travels a lot, I want to be able to share my location and itinerary with my friends and family. 
+
+
 **_ User Story #4 - Researching Spots to Go To_**
 **_ User Story #5 - Researching Spots to Go To_**
 **_ User Story #6(group story) - Researching Spots to Go To_**
