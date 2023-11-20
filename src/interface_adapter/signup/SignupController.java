@@ -1,2 +1,3 @@
-package interface_adapter.signup;public class SignupController {
-}
+package interface_adapter.signup;
+
+public class SignupController {}
