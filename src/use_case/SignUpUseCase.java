@@ -1,2 +1,4 @@
-package use_case;public class SignUpUseCase {
+package use_case;
+
+public class SignUpUseCase {
 }
