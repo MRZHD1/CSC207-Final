@@ -40,6 +40,7 @@ public class LoginPage {
                 // If the checkbox is selected, set the Location text field
                 // to "my home address"
                 Location.setText("my home address");
+                String user_location = "my home address";
             } else {
                 // If the checkbox is deselected, clear the Location text field
                 Location.setText("");
