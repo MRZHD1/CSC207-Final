@@ -1,2 +1,5 @@
-package use_case.search;public interface SearchDataAccessInterface {
+package use_case.search;
+
+import entity.Place;
+public interface SearchDataAccessInterface {
 }

@@ -10,9 +10,9 @@ public class SearchController {
         this.searchUseCaseInteractor = searchUseCaseInteractor;
     }
 
-    public String execute(){
-        SearchInputData searchInput = new SearchInputData();
+    public void execute(String query, String location){
+        SearchInputData searchInput = new SearchInputData(query, location);
 
-        return searchUseCaseInteractor.execute(searchInput);
+        searchUseCaseInteractor.execute(searchInput);
     }
 }
