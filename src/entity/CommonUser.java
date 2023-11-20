@@ -1,4 +1,4 @@
-package entity;
+package src.entity;
 
 import java.time.LocalDateTime;
 
@@ -14,7 +14,7 @@ public class CommonUser implements User{
      * @param password
      * @param creationTime
      */
-    public CommonUser(String userName, String password, LocalDateTime creationTime) {
+    CommonUser(String userName, String password, LocalDateTime creationTime) {
         this.userName = userName;
         this.password = password;
 
