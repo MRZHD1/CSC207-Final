@@ -49,4 +49,16 @@ public class SearchInteractor implements SearchInputBoundary {
         JSONArray results = jObject.getJSONArray("resourceSets").getJSONObject(0).getJSONArray("resources");
         return results;
     }
+
+    private String findCoordinates(String address, String key) throws IOException, InterruptedException {
+        String locateURL = String.format("https://dev.virtualearth.net/REST/v1/Locations?q=%s&key=%s  \n",address,key);
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(locateURL))
+                .build();
+        HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        JSONObject jObject  = new JSONObject(response.body().toString());
+        System.out.println(jObject);
+        return "48.604311,-122.981998,5000";
+    }
 }
