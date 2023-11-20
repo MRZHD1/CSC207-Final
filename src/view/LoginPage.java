@@ -15,7 +15,7 @@ public class LoginPage {
 
     public LoginPage(){
 
-        frame = new JFrame("Main TRP Frame");
+        frame = new JFrame("Main Placify Frame");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(700, 550));
         frame.setResizable(false);
@@ -33,12 +33,12 @@ public class LoginPage {
         nextButton.addActionListener(e -> {
             String user_location = Location.getText();
             String user_subject = Destination.getText();
+
         });
 
         fillInWithHomeCheckBox.addActionListener(e -> {
             if (fillInWithHomeCheckBox.isSelected()) {
-                // If the checkbox is selected, set the Location text field
-                // to "my home address"
+                // If the checkbox is selected, set the Location text to "my home address"
                 Location.setText("my home address");
                 String user_location = "my home address";
             } else {
