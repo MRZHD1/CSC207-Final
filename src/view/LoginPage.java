@@ -3,6 +3,7 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Color;
+import interface_adapter.search.SearchController;
 
 public class LoginPage {
     private JTextField Location;
@@ -10,6 +11,8 @@ public class LoginPage {
     private JButton nextButton;
     private JTextField Destination;
     private JCheckBox fillInWithHomeCheckBox;
+
+    private SearchController searchController;
 
     private JFrame frame;
 
@@ -31,8 +34,9 @@ public class LoginPage {
         //Saving the user inputs for the input boundaries (it saves when the <next> button gets clicked)
 
         nextButton.addActionListener(e -> {
-            String user_location = Location.getText();
-            String user_subject = Destination.getText();
+            String location = Location.getText();
+            String query = Destination.getText();
+            searchController.execute(location, query);
 
         });
 
@@ -40,7 +44,7 @@ public class LoginPage {
             if (fillInWithHomeCheckBox.isSelected()) {
                 // If the checkbox is selected, set the Location text to "my home address"
                 Location.setText("my home address");
-                String user_location = "my home address";
+                String location = "my home address";
             } else {
                 // If the checkbox is deselected, clear the Location text field
                 Location.setText("");
