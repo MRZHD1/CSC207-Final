@@ -14,17 +14,17 @@ import view.SearchView;
 import javax.swing.*;
 import java.io.IOException;
 
-public class SignupUseCaseFactory {
+public class SearchUseCaseFactory {
 
     /** Prevent instantiation. */
-    private SignupUseCaseFactory() {}
+    private SearchUseCaseFactory() {}
 
     public static SearchView create(
-            ViewManagerModel viewManagerModel, SearchView searchViewModel, SearchDataAccessInterface userDataAccessObject) {
+            ViewManagerModel viewManagerModel, SearchViewModel searchViewModel, SearchDataAccessInterface userDataAccessObject) {
 
         try {
-            SearchController searchController = createSearchUseCase(viewManagerModel, signupViewModel, userDataAccessObject);
-            return new SearchView(searchController, signupViewModel);
+            SearchController searchController = createSearchUseCase(viewManagerModel, searchViewModel, userDataAccessObject);
+            return new SearchView(searchController, searchViewModel);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
         }
@@ -34,15 +34,15 @@ public class SignupUseCaseFactory {
 
     private static SearchController createSearchUseCase(ViewManagerModel viewManagerModel, SearchViewModel searchViewModel, SearchDataAccessInterface searchDataAccessInterface) throws IOException {
 
-        // Notice how we pass this method's parameters to the Presenter.
+
         SearchOutputBoundary signupOutputBoundary = new SearchPresenter(viewManagerModel, searchViewModel);
 
         UserFactory userFactory = new CommonUserFactory();
 
         SearchInputBoundary userSignupInteractor = new SearchInteractor(
-                userDataAccessObject, signupOutputBoundary, userFactory);
+                userDataAccessObject, searchOutputBoundary, userFactory);
 
-        return new SignupController(userSignupInteractor);
+        return new SearchController(userSignupInteractor);
     }
 }
 
