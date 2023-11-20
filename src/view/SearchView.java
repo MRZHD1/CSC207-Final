@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.Color;
 import interface_adapter.search.SearchController;
 
-public class LoginPage {
+public class SearchView {
     private JTextField Location;
     private JPanel panel1;
     private JButton nextButton;
@@ -16,7 +16,7 @@ public class LoginPage {
 
     private JFrame frame;
 
-    public LoginPage(){
+    public SearchView(){
 
         frame = new JFrame("Main Placify Frame");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -31,7 +31,7 @@ public class LoginPage {
 
         frame.getContentPane().setBackground(Color.GREEN);
 
-        //Saving the user inputs for the input boundaries (it saves when the <next> button gets clicked)
+        //Passing the user inputs to the controller (it saves when the <next> button gets clicked)
 
         nextButton.addActionListener(e -> {
             String location = Location.getText();
