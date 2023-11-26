@@ -3,20 +3,31 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Color;
-import interface_adapter.search.SearchController;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
-public class LoginPage {
+import interface_adapter.search.SearchController;
+import interface_adapter.search.SearchState;
+import interface_adapter.search.SearchViewModel;
+import interface_adapter.signup.SignupState;
+
+public class SearchView extends JPanel implements ActionListener, PropertyChangeListener {
+    public String viewName = "Search";
     private JTextField Location;
     private JPanel panel1;
     private JButton nextButton;
-    private JTextField Destination;
+    private JTextField Query;
     private JCheckBox fillInWithHomeCheckBox;
 
     private SearchController searchController;
 
     private JFrame frame;
 
-    public LoginPage(){
+    public SearchView(SearchController controller, SearchViewModel searchViewModel){
 
         frame = new JFrame("Main Placify Frame");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -35,8 +46,16 @@ public class LoginPage {
 
         nextButton.addActionListener(e -> {
             String location = Location.getText();
-            String query = Destination.getText();
-            searchController.execute(location, query);
+            String query = Query.getText();
+            try {
+                controller.execute(query, location);
+            } catch (FileNotFoundException ex) {
+                throw new RuntimeException(ex);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+            }
 
         });
 
@@ -53,4 +72,17 @@ public class LoginPage {
 
 
         }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        SearchState state = (SearchState) evt.getNewValue();
+        if (state.getSearchError() != null) {
+            JOptionPane.showMessageDialog(this, state.getSearchError());
+        }
+    }
 }
