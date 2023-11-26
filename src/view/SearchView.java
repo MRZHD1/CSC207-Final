@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.Color;
 import interface_adapter.search.SearchController;
 
-public class SearchPage {
+public class SearchView {
     private JTextField Location;
     private JPanel panel1;
     private JButton nextButton;
@@ -16,7 +16,7 @@ public class SearchPage {
 
     private JFrame frame;
 
-    public SearchPage(SearchController controller){
+    public SearchView(SearchController controller){
 
         frame = new JFrame("Main Placify Frame");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

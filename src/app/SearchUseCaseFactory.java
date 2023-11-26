@@ -1,18 +1,15 @@
 package app;
 
-import entity.CommonUserFactory;
-import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.login.LoginController;
-import interface_adapter.login.LoginViewModel;
 import interface_adapter.results.ResultsViewModel;
 import interface_adapter.search.SearchController;
+import interface_adapter.search.SearchPresenter;
 import interface_adapter.search.SearchViewModel;
 import use_case.search.SearchDataAccessInterface;
 import use_case.search.SearchInputBoundary;
 import use_case.search.SearchInteractor;
 import use_case.search.SearchOutputBoundary;
-import view.SearchPage;
+import view.SearchView;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -21,7 +18,7 @@ public class SearchUseCaseFactory {
     /** Prevent instantiation. */
     private SearchUseCaseFactory() {}
 
-    public static SearchPage create(
+    public static SearchView create(
             ViewManagerModel viewManagerModel,
             SearchViewModel searchViewModel,
             ResultsViewModel resultsViewModel,
@@ -29,7 +26,7 @@ public class SearchUseCaseFactory {
 
         try {
             SearchController searchController = createSearchUseCase(viewManagerModel, searchViewModel, resultsViewModel, userDataAccessObject);
-            return new LoginView(loginViewModel, searchController);
+            return new SearchView(searchController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
         }
@@ -37,21 +34,17 @@ public class SearchUseCaseFactory {
         return null;
     }
 
-    private static LoginController createSearchUseCase(
+    private static SearchController createSearchUseCase(
             ViewManagerModel viewManagerModel,
             SearchViewModel searchViewModel,
             ResultsViewModel resultsViewModel,
             SearchDataAccessInterface userDataAccessObject) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
-        SearchOutputBoundary searchOutputBoundary = new SearchPresenter()
-        LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel, loggedInViewModel, loginViewModel);
-
-        UserFactory userFactory = new CommonUserFactory();
-
+        SearchOutputBoundary searchOutputBoundary = new SearchPresenter(searchViewModel, resultsViewModel, viewManagerModel);
         SearchInputBoundary searchInputBoundary = new SearchInteractor(
-                userDataAccessObject, SearchOutputBoundary);
+                userDataAccessObject, searchOutputBoundary);
 
-        return new SearchController(loginInteractor);
+        return new SearchController(searchInputBoundary);
     }
 }
