@@ -9,6 +9,7 @@ import java.io.File;
 import java.util.Scanner;
 
 
+import entity.Place;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -34,12 +35,13 @@ public class SearchInteractor implements SearchInputBoundary {
         }
     }
 
-    private JSONArray search(String query, String location) throws IOException, InterruptedException {
+    private JSONArray search(String query, Place location) throws IOException, InterruptedException {
         File file = new File(
-                "../key.txt");
+                "./key.txt");
         Scanner sc = new Scanner(file);
         String key = sc.nextLine();
-        String searchURL = String.format("https://dev.virtualearth.net/REST/v1/LocalSearch/?query=%s&userLocation=%s&key=%s",query,location,key);
+        String coordinates = location.getCoordinates();
+        String searchURL = String.format("https://dev.virtualearth.net/REST/v1/LocalSearch/?query=%s&userLocation=%s&key=%s",query,coordinates,key);
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(searchURL))
@@ -48,17 +50,5 @@ public class SearchInteractor implements SearchInputBoundary {
         JSONObject jObject  = new JSONObject(response.body().toString());
         JSONArray results = jObject.getJSONArray("resourceSets").getJSONObject(0).getJSONArray("resources");
         return results;
-    }
-
-    private String findCoordinates(String address, String key) throws IOException, InterruptedException {
-        String locateURL = String.format("https://dev.virtualearth.net/REST/v1/Locations?q=%s&key=%s  \n",address,key);
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(locateURL))
-                .build();
-        HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        JSONObject jObject  = new JSONObject(response.body().toString());
-        System.out.println(jObject);
-        return "48.604311,-122.981998,5000";
     }
 }
