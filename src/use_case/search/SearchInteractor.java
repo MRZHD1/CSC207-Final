@@ -6,6 +6,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -27,7 +28,8 @@ public class SearchInteractor implements SearchInputBoundary {
     public void execute(SearchInputData searchInput) {
         // Use Bing Maps API to create the list of searchResults
         try {
-            search(searchInput.getQuery(), searchInput.getLocation());
+            JSONArray jsonArray = search(searchInput.getQuery(), searchInput.getLocation());
+            searchAccessObject.save(jsonArray);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
@@ -42,13 +44,17 @@ public class SearchInteractor implements SearchInputBoundary {
         String key = sc.nextLine();
         String coordinates = location.getCoordinates();
         String searchURL = String.format("https://dev.virtualearth.net/REST/v1/LocalSearch/?query=%s&userLocation=%s&key=%s",query,coordinates,key);
+        System.out.println(searchURL);
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(searchURL))
                 .build();
         HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
         JSONObject jObject  = new JSONObject(response.body().toString());
+        System.out.println(jObject);
         JSONArray results = jObject.getJSONArray("resourceSets").getJSONObject(0).getJSONArray("resources");
+        System.out.println("PLACES:");
+        System.out.println(results);
         return results;
     }
 }

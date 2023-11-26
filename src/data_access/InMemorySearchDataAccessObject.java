@@ -1,6 +1,6 @@
 package data_access;
 
-import entity.Place;
+import org.json.JSONArray;
 import use_case.search.SearchDataAccessInterface;
 
 import java.util.ArrayList;
@@ -9,9 +9,10 @@ public class InMemorySearchDataAccessObject implements SearchDataAccessInterface
     private final ArrayList results = new ArrayList();
 
     @Override
-    public void save(ArrayList results) {
+    public void save(JSONArray results) {
         this.results.clear();
-        for (Object place:results.subList(0,4)) {
+        for (Object place:results) {
+            System.out.println("PLACE:");
             System.out.println(place);
             this.results.add(place);
         }

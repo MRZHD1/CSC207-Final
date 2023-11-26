@@ -1,5 +1,6 @@
 package entity;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -13,9 +14,9 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-public class CommonPlace implements Place{
+public class CommonPlace implements Place {
     private final String address;
-    private String coordinates;
+    private final String coordinates;
 
     public CommonPlace(String address) throws IOException, InterruptedException {
         this.address = URLEncoder.encode(address, StandardCharsets.UTF_8);
@@ -35,8 +36,10 @@ public class CommonPlace implements Place{
         HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println(response.statusCode());
         JSONObject jObject  = new JSONObject(response.body().toString());
-        System.out.println(jObject);
-        return "48.604311,-122.981998,5000";
+        String coordinates = jObject.getJSONArray("resourceSets").getJSONObject(0).getJSONArray("resources").getJSONObject(0).getJSONArray("geocodePoints").getJSONObject(0).get("coordinates").toString();
+        coordinates = coordinates.replace("[","").replace("]","")+",10000";
+        System.out.println(coordinates);
+        return coordinates;
     }
 
     @Override
