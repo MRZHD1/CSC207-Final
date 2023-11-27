@@ -4,6 +4,7 @@ import java.beans.PropertyChangeListener;
 
 public abstract class ViewModel {
 
+    public static String TITLE_LABEL;
     private String viewName;
 
     public ViewModel(String viewName) {

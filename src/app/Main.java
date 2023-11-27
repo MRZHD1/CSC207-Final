@@ -22,6 +22,7 @@ public class Main {
 
         JFrame application = new JFrame("Place Search");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        application.setPreferredSize(new Dimension(700, 550));
 
         CardLayout cardLayout = new CardLayout();
 
