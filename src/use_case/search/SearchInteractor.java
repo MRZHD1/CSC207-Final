@@ -8,22 +8,25 @@ import java.net.http.HttpResponse;
 import java.io.File;
 import java.util.Scanner;
 
+import use_case.search;
+
+import entity.User;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class SearchInteractor implements SearchInputBoundary {
-    final SearchDataAccessInterface searchAccessObject;
-    final SearchOutputBoundary searchResults;
+public class SearchInteractor implements use_case.search.SearchInputBoundary {
+    final use_case.search.SearchDataAccessInterface searchAccessObject;
+    final use_case.search.SearchOutputBoundary searchResults;
 
 
-    public SearchInteractor(SearchDataAccessInterface searchAccessObject, SearchOutputBoundary searchResults) {
+    public SearchInteractor(use_case.search.SearchDataAccessInterface searchAccessObject, use_case.search.SearchOutputBoundary searchResults) {
         this.searchAccessObject = searchAccessObject;
         this.searchResults = searchResults;
     }
 
     @Override
-    public void execute(SearchInputData searchInput) {
+    public void execute(use_case.search.SearchInputData searchInput) {
         // Use Bing Maps API to create the list of searchResults
         try {
             search(searchInput.getQuery(), searchInput.getLocation());
