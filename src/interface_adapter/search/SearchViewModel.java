@@ -9,8 +9,8 @@ import java.beans.PropertyChangeSupport;
 public class SearchViewModel extends ViewModel {
     public static final String TITLE_LABEL = "Search View";
 
-    public static final String LOCATION_LABEL = "Choose location";
-    public static final String QUERY_LABEL = "Choose query";
+    public static final String LOCATION_LABEL = "Enter location";
+    public static final String QUERY_LABEL = "Enter destination";
 
     public static final String NEXT_BUTTON_LABEL = "Next";
 
