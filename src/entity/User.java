@@ -8,5 +8,4 @@ public interface User {
 
     String getPassword();
 
-    LocalDateTime getCreationTime();
 }

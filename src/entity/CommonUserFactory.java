@@ -1,13 +1,14 @@
 package entity;
 
-import java.time.LocalDateTime;
+import src.entity.CommonUser;
+import src.entity.UserFactory;
 
-public class CommonUserFactory implements entity.UserFactory {
+public class CommonUserFactory implements UserFactory {
+
 
     @Override
-    public entity.User create(String name, String password, LocalDateTime ltd) {
-        return new CommonUser(name, password, ltd);
+    public entity.User create(String name, String password) {
+        return new CommonUser(name, password);
     }
-
 }
 
