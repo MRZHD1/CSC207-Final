@@ -21,7 +21,7 @@ import interface_adapter.signup.SignupViewModel;
 
 
 public class SearchView extends JPanel implements ActionListener, PropertyChangeListener {
-    public String viewName = "Search";
+    public String viewName = "WELCOME!";
     private JTextField Location = new JTextField(15);
     private JPanel panel1;
     private JButton nextButton;
