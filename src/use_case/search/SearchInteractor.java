@@ -1,5 +1,4 @@
 package use_case.search;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -10,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
+import entity.DetailedPlace;
 import entity.Place;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -30,10 +30,15 @@ public class SearchInteractor implements SearchInputBoundary {
         try {
             JSONArray jsonArray = search(searchInput.getQuery(), searchInput.getLocation());
             searchAccessObject.save(jsonArray);
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        }
+        ArrayList results = searchAccessObject.getResults();
+        if (!results.isEmpty()) {
+            SearchOutputData searchOutputData = new SearchOutputData(results);
+            searchResults.prepareSuccessView(searchOutputData);
+        } else {
+            searchResults.prepareFailView("Your search failed! Make sure your location is in the US.");
         }
     }
 
@@ -49,12 +54,8 @@ public class SearchInteractor implements SearchInputBoundary {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(searchURL))
                 .build();
-        HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        JSONObject jObject  = new JSONObject(response.body().toString());
-        System.out.println(jObject);
-        JSONArray results = jObject.getJSONArray("resourceSets").getJSONObject(0).getJSONArray("resources");
-        System.out.println("PLACES:");
-        System.out.println(results);
-        return results;
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        JSONObject jObject  = new JSONObject(response.body());
+        return jObject.getJSONArray("resourceSets").getJSONObject(0).getJSONArray("resources");
     }
 }

@@ -46,4 +46,9 @@ public class CommonPlace implements Place {
     public String getCoordinates() {
         return this.coordinates;
     }
+
+    @Override
+    public String getAddress() {
+        return this.address;
+    }
 }
