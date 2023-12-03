@@ -21,7 +21,7 @@ import interface_adapter.signup.SignupViewModel;
 
 
 public class SearchView extends JPanel implements ActionListener, PropertyChangeListener {
-    public String viewName = "WELCOME!";
+    public String viewName = "search";
     private JTextField Location = new JTextField(15);
     private JPanel panel1;
     private JButton nextButton;
@@ -39,6 +39,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
 
         this.searchController = controller;
         this.searchViewModel = searchViewModel;
+        this.searchViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel(SearchViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
