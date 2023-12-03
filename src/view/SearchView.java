@@ -9,6 +9,7 @@ import java.beans.PropertyChangeListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import interface_adapter.results.ResultsViewModel;
 import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchState;
 import interface_adapter.search.SearchViewModel;
@@ -60,6 +61,13 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
             String query = Query.getText();
             try {
                 controller.execute(query, location);
+
+                // Switch to the ResultsView
+                SearchState currentState = searchViewModel.getState();
+                searchViewModel.setState(currentState);
+
+
+
             } catch (FileNotFoundException ex) {
                 throw new RuntimeException(ex);
             } catch (IOException ex) {
