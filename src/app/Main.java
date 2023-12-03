@@ -8,6 +8,7 @@ import interface_adapter.results.ResultsViewModel;
 import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchViewModel;
 import use_case.search.SearchDataAccessInterface;
+import view.ResultsView;
 import view.SearchView;
 import view.ViewManager;
 
@@ -39,6 +40,11 @@ public class Main {
 
         SearchView searchView = SearchUseCaseFactory.create(viewManagerModel,searchViewModel,resultsViewModel,searchDataAccessInterface);
         views.add(searchView, searchView.viewName);
+
+
+        ResultsView resultsView = new ResultsView(resultsViewModel);
+        views.add(resultsView, resultsView.viewName);
+
 
         viewManagerModel.setActiveView(searchView.viewName);
         viewManagerModel.firePropertyChanged();

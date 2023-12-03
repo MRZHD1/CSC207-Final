@@ -1,7 +1,7 @@
 package interface_adapter.search;
 
 import interface_adapter.ViewModel;
-import interface_adapter.results.ResultsState;
+
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -10,7 +10,7 @@ public class SearchViewModel extends ViewModel {
     public static final String TITLE_LABEL = "Search View";
 
     public static final String LOCATION_LABEL = "Enter location";
-    public static final String QUERY_LABEL = "Enter destination";
+    public static final String QUERY_LABEL = "Enter subject";
 
     public static final String NEXT_BUTTON_LABEL = "Next";
 
