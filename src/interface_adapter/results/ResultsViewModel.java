@@ -12,6 +12,10 @@ public class ResultsViewModel extends ViewModel {
 
     private ResultsState state = new ResultsState();
 
+    public static final String CONTINUE_BUTTON_LABEL = "Next";
+
+    private ResultsState state = new ResultsState();
+
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public ResultsViewModel() {
