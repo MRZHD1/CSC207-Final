@@ -1,19 +1,21 @@
 package interface_adapter.results;
 
+import entity.DetailedPlace;
+
 import javax.xml.transform.Result;
 import java.util.ArrayList;
 
 public class ResultsState {
-    private ArrayList results = new ArrayList<>();
+    private ArrayList<DetailedPlace> results = new ArrayList<>();
     public ResultsState(ResultsState copy) {
-        results = copy.results;
+        this.results = copy.results;
     }
     public ResultsState(){
     }
-    public ArrayList getResults() {
-        return results;
+    public ArrayList<DetailedPlace> getResults() {
+        return this.results;
     }
-    public void setResults(ArrayList results){
+    public void setResults(ArrayList<DetailedPlace> results){
         this.results = results;
     }
 }

@@ -32,7 +32,7 @@ public class ResultsViewModel extends ViewModel {
     }
 
     public ResultsState getState() {
-        return state;
+        return this.state;
     }
 
 
