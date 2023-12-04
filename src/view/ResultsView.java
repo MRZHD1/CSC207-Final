@@ -26,7 +26,7 @@ public class ResultsView extends JPanel implements ActionListener, PropertyChang
 
         JLabel title = new JLabel("List of Queries");
         title.setHorizontalAlignment(JLabel.CENTER);
-        title.setBorder(BorderFactory.createEmptyBorder(0, 200, 50, 0));
+        title.setBorder(BorderFactory.createEmptyBorder(0, 100, 50, 0));
 
         quit = new JButton("Quit");
         quit.addActionListener(new ActionListener() {
