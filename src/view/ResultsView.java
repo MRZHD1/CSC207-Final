@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
+import javax.swing.ButtonGroup;
 
 public class ResultsView extends JPanel implements ActionListener, PropertyChangeListener {
 
@@ -24,13 +25,13 @@ public class ResultsView extends JPanel implements ActionListener, PropertyChang
         this.resultsViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel("List of Queries");
-        title.setBorder(BorderFactory.createEmptyBorder(0, 300, 20, 0));
+        title.setHorizontalAlignment(JLabel.CENTER);
+        title.setBorder(BorderFactory.createEmptyBorder(0, 200, 50, 0));
 
         quit = new JButton("Quit");
         quit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Handle quit button action (e.g., closing the application)
                 System.exit(0);
             }
         });
@@ -38,7 +39,6 @@ public class ResultsView extends JPanel implements ActionListener, PropertyChang
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title);
 
-        // Add quit button to the panel
         this.add(quit);
     }
 
@@ -49,24 +49,41 @@ public class ResultsView extends JPanel implements ActionListener, PropertyChang
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         ResultsState state = (ResultsState) evt.getNewValue();
-        ArrayList<DetailedPlace> ResultsArray = state.getResults();
+        ArrayList<DetailedPlace> resultsArray = state.getResults();
 
-        for (DetailedPlace place : ResultsArray) {
+
+        ButtonGroup buttonGroup = new ButtonGroup();
+
+        for (DetailedPlace place : resultsArray) {
             JLabel name = new JLabel(place.getName());
             JLabel address = new JLabel(place.getAddress());
-            this.add(name);
-            this.add(address);
 
-            address.setBorder(BorderFactory.createEmptyBorder(0, 70, 0, 0));
+            JRadioButton radioButton = new JRadioButton();
+            // ADD ACTION LISTENER HERE FOR THE USE CASE!!!
 
-            name.setBorder(BorderFactory.createEmptyBorder(0, 70, 0, 0));
+            buttonGroup.add(radioButton);
 
-            // Add vertical strut for spacing
-            this.add(Box.createVerticalStrut(20));  // Adjust the value (10) for your preferred spacing
+            JPanel placePanel = new JPanel();
+            placePanel.setLayout(new BorderLayout());
+
+            JPanel textPanel = new JPanel();
+            textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.Y_AXIS));
+            textPanel.add(name);
+            textPanel.add(address);
+            placePanel.add(textPanel, BorderLayout.CENTER);
+
+            placePanel.add(Box.createHorizontalGlue(), BorderLayout.EAST);
+            placePanel.add(radioButton, BorderLayout.LINE_END);
+
+            this.add(placePanel);
+
+            address.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 0));
+            name.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 0));
+
+            this.add(Box.createVerticalStrut(0));
         }
 
-        // Add quit button to the panel after detailed places
         this.add(quit);
-
+        quit.setBorder(BorderFactory.createEmptyBorder(0, 400, 0, 0));
     }
 }
