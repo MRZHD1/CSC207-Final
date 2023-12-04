@@ -2,7 +2,8 @@ package app;
 
 import java.io.IOException;
 import java.net.*;
-
+import data_access.FileUserDataAccessObject;
+import interface_adapter.login.LoginViewModel;
 
 
 
@@ -18,4 +19,31 @@ public class Main {
         int code = connection.getResponseCode();
         System.out.println(code); // Returns status code if request went through.
     }
+
+//    LoginViewModel loginViewModel = new LoginViewModel();
+//    LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
+//    SignupViewModel signupViewModel = new SignupViewModel();
+//
+//    FileUserDataAccessObject userDataAccessObject;
+//        try {
+//        userDataAccessObject = new FileUserDataAccessObject("./users.csv", new entity.CommonUserFactory());
+//    } catch (IOException e) {
+//        throw new RuntimeException(e);
+//    }
+//
+//    SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject);
+//        views.add(signupView, signupView.viewName);
+//
+//    LoginView loginView = app.LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
+//        views.add(loginView, loginView.viewName);
+//
+//    LoggedInView loggedInView = new LoggedInView(loggedInViewModel);
+//        views.add(loggedInView, loggedInView.viewName);
+//
+//        viewManagerModel.setActiveView(signupView.viewName);
+//        viewManagerModel.firePropertyChanged();
+//
+//        application.pack();
+//        application.setVisible(true);
+
 }
