@@ -1,11 +1,8 @@
 package app;
 
-import data_access.FileUserDataAccessObject;
 import data_access.InMemorySearchDataAccessObject;
-import entity.CommonUserFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.results.ResultsViewModel;
-import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchViewModel;
 import use_case.search.SearchDataAccessInterface;
 import view.ResultsView;
@@ -14,8 +11,6 @@ import view.ViewManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-import java.util.ArrayList;
 
 
 public class Main {
