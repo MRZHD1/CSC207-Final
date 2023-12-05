@@ -1,5 +1,6 @@
 package interface_adapter.login;
 
+// most usages of this class in loginviewmodel and loginview
 public class LoginState {
     private String username = "";
     private String usernameError = null;
@@ -14,6 +15,7 @@ public class LoginState {
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
+
     public LoginState() {} // one usage is in LoggedinViewModel
 
     public String getUsername() {

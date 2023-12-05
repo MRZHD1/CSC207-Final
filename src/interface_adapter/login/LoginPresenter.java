@@ -1,6 +1,6 @@
 package interface_adapter.login;
 
-import interface_adapter.logged_in.LoggedInState;
+import interface_adapter.login.LoginState;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.signup.SignupState;
@@ -29,7 +29,7 @@ public class LoginPresenter implements LoginOutputBoundary {
     public void prepareSuccessView(LoginOutputData response) {
         // On success, switch to the logged in view.
 
-        LoggedInState loggedInState = loggedInViewModel.getState();
+        interface_adapter.logged_in.LoggedInState loggedInState = loggedInViewModel.getState();
         loggedInState.setUsername(response.getUsername());
         this.loggedInViewModel.setState(loggedInState);
         this.loggedInViewModel.firePropertyChanged();
