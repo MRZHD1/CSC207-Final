@@ -1,4 +1,4 @@
-package use_case_search;
+package use_case.search;
 
 import data_access.InMemorySearchDataAccessObject;
 import org.junit.jupiter.api.Test;
