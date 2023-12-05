@@ -21,4 +21,12 @@ public class SearchInputData {
         return URLEncoder.encode(this.query, StandardCharsets.UTF_8);
     }
     Place getLocation() {return this.location;}
+
+    public String getSubject() {
+        return query;
+    }
+
+    public Place getPinpoint(){
+        return location;
+    }
 }

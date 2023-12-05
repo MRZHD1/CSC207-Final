@@ -19,14 +19,14 @@ class SearchInteractorTest {
         SearchOutputBoundary successPresenter = new SearchOutputBoundary() {
             @Override
             public void prepareSuccessView(SearchOutputData results) {
-                // Need help with finding the address
+                // Need help with finding the address!!!!!!!!
                 assertEquals(results.getResults(), results.getResults());
 
             }
 
             @Override
             public void prepareFailView(String error) {
-                fail("Use case failure is unexpected");
+                fail("Use case failure is not supposed to happen");
             }
         };
 
