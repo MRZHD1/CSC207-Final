@@ -93,12 +93,10 @@ public class ResultsView extends JPanel implements ActionListener, PropertyChang
         this.add(quit);
         quit.setBorder(BorderFactory.createEmptyBorder(0, 400, 0, 0));
     }
-    private void handleRadioButtonSelection(DetailedPlace selectedPlace) {
-        // Implement the logic to handle the selection of the radio button
-        // For example, you can store the selected place or perform any other action
-        // based on the selected place.
+    void handleRadioButtonSelection(DetailedPlace selectedPlace) {
+        // Do something with the radio button here
 
         System.out.println("Selected Place: " + selectedPlace.getName());
-        // You can extend this method to perform additional actions based on the selected place.
+        // i can extend this method to perform additional actions based on the selected place
     }
 }
