@@ -24,7 +24,7 @@ public class SearchState {
     }
 
     public String getSearchError() {
-        return searchError;
+        return this.searchError;
     }
 
 }

@@ -13,6 +13,8 @@ public class SearchViewModel extends ViewModel {
     public static final String QUERY_LABEL = "Enter subject";
 
     public static final String NEXT_BUTTON_LABEL = "Next";
+    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
+
 
     private SearchState state = new SearchState();
 
@@ -23,7 +25,6 @@ public class SearchViewModel extends ViewModel {
     public void setState(SearchState state) {
         this.state = state;
     }
-    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
     public void firePropertyChanged() {
         support.firePropertyChange("state", null, this.state);
     }
@@ -33,6 +34,6 @@ public class SearchViewModel extends ViewModel {
     }
 
     public SearchState getState() {
-        return state;
+        return this.state;
     }
 }
