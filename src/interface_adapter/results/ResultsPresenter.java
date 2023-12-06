@@ -36,7 +36,7 @@ public class ResultsPresenter implements ResultsOutputBoundary{
         this.viewManagerModel.firePropertyChanged();
     }
 
-    @Override
+
     public void prepareFailView(String error) {
         ResultsState resultsState = resultsViewModel.getState();
         resultsState.setResultsError(error);

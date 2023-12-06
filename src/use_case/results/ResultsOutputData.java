@@ -2,6 +2,8 @@ package use_case.results;
 
 import entity.DetailedPlace;
 
+import java.util.ArrayList;
+
 
 public class ResultsOutputData {
 
@@ -13,7 +15,7 @@ public class ResultsOutputData {
 
     }
 
-    public DetailedPlace getSpecific() {
+    public ArrayList<DetailedPlace> getSpecific() {
         return detailedPlace;
     }
 

@@ -4,9 +4,11 @@ import data_access.InMemorySearchDataAccessObject;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.results.ResultsViewModel;
 import interface_adapter.search.SearchViewModel;
+import interface_adapter.specific.SpecificViewModel;
 import use_case.search.SearchDataAccessInterface;
 import view.ResultsView;
 import view.SearchView;
+import view.SpecificView;
 import view.ViewManager;
 
 import javax.swing.*;
@@ -39,6 +41,9 @@ public class Main {
 
         ResultsView resultsView = new ResultsView(resultsViewModel);
         views.add(resultsView, resultsView.viewName);
+
+        SpecificView specificView = new SpecificView(new SpecificViewModel());
+        views.add(specificView, specificView.viewName);
 
 
         viewManagerModel.setActiveView(searchView.viewName);
