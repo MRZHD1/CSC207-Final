@@ -19,6 +19,7 @@ public class ResultsView extends JPanel implements ActionListener, PropertyChang
 
     private final ResultsViewModel resultsViewModel;
     final JButton quit;
+    final JButton nextButton;
 
     public ResultsView(ResultsViewModel resultsViewModel) {
         this.resultsViewModel = resultsViewModel;
@@ -36,9 +37,17 @@ public class ResultsView extends JPanel implements ActionListener, PropertyChang
             }
         });
 
+        nextButton = new JButton("Next");
+        nextButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handleNextButtonClicked();
+            }
+        });
+
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title);
-
+        this.add(nextButton);
         this.add(quit);
     }
 
@@ -50,7 +59,6 @@ public class ResultsView extends JPanel implements ActionListener, PropertyChang
     public void propertyChange(PropertyChangeEvent evt) {
         ResultsState state = (ResultsState) evt.getNewValue();
         ArrayList<DetailedPlace> resultsArray = state.getResults();
-
 
         ButtonGroup buttonGroup = new ButtonGroup();
 
@@ -90,13 +98,20 @@ public class ResultsView extends JPanel implements ActionListener, PropertyChang
             this.add(Box.createVerticalStrut(0));
         }
 
+        this.add(nextButton);
         this.add(quit);
         quit.setBorder(BorderFactory.createEmptyBorder(0, 400, 0, 0));
     }
+
     void handleRadioButtonSelection(DetailedPlace selectedPlace) {
         // Do something with the radio button here
-
         System.out.println("Selected Place: " + selectedPlace.getName());
         // i can extend this method to perform additional actions based on the selected place
+    }
+
+    void handleNextButtonClicked() {
+
+        System.out.println("Next button clicked");
+
     }
 }
