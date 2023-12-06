@@ -20,13 +20,11 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     private final JTextField usernameInputField = new JTextField(15);
     private final JPasswordField passwordInputField = new JPasswordField(15);
     private final JPasswordField repeatPasswordInputField = new JPasswordField(15);
+    private final JTextField addressInputField = new JTextField(15);
     private final SignupController signupController;
 
     private final JButton signUp;
     private final JButton cancel;
-
-    // TODO Note: this is the new JButton for clearing the users file
-    private final JButton clear;
 
     public SignupView(SignupController controller, SignupViewModel signupViewModel) {
 
@@ -43,6 +41,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 new JLabel(SignupViewModel.PASSWORD_LABEL), passwordInputField);
         LabelTextPanel repeatPasswordInfo = new LabelTextPanel(
                 new JLabel(SignupViewModel.REPEAT_PASSWORD_LABEL), repeatPasswordInputField);
+        LabelTextPanel defaultAddressInfo = new LabelTextPanel(
+                new JLabel("Default Address"), addressInputField);
 
         JPanel buttons = new JPanel();
         signUp = new JButton(SignupViewModel.SIGNUP_BUTTON_LABEL);
@@ -50,11 +50,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         cancel = new JButton(SignupViewModel.CANCEL_BUTTON_LABEL);
         buttons.add(cancel);
 
-        // TODO Note: the following line instantiates the "clear" button; it uses
-        //      a CLEAR_BUTTON_LABEL constant which is defined in the SignupViewModel class.
-        //      You need to add this "clear" button to the "buttons" panel.
-        clear = new JButton(SignupViewModel.CLEAR_BUTTON_LABEL);
-        buttons.add(clear);
 
         signUp.addActionListener(
                 // This creates an anonymous subclass of ActionListener and instantiates it.
@@ -66,26 +61,14 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                             signupController.execute(
                                     currentState.getUsername(),
                                     currentState.getPassword(),
-                                    currentState.getRepeatPassword()
+                                    currentState.getRepeatPassword(),
+                                    currentState.getDefaultAddress()
                             );
                         }
                     }
                 }
         );
 
-        // TODO Add the body to the actionPerformed method of the action listener below
-        //      for the "clear" button. You'll need to write the controller before
-        //      you can complete this.
-        clear.addActionListener(
-                e -> {
-                    final String[] message = {""};
-                    if (e.getSource().equals(clear)) {
-                        clearController.execute().forEach((user) -> {
-                            message[0] += user + "\n";});
-                    }
-                    JOptionPane.showMessageDialog(this, message[0]);
-                }
-        );
 
         cancel.addActionListener(this);
 
@@ -154,12 +137,34 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 }
         );
 
+        addressInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        SignupState currentState = signupViewModel.getState();
+                        currentState.setDefaultAddress(addressInputField.getText() + e.getKeyChar());
+                        signupViewModel.setState(currentState); // Hmm, is this necessary?
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+
+                    }
+                }
+        );
+
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
         this.add(usernameInfo);
         this.add(passwordInfo);
         this.add(repeatPasswordInfo);
+        this.add(defaultAddressInfo);
         this.add(buttons);
     }
 

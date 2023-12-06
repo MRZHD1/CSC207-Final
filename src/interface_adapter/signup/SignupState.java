@@ -7,6 +7,7 @@ public class SignupState {
     private String passwordError = null;
     private String repeatPassword = "";
     private String repeatPasswordError = null;
+    private String defaultAddress = "";
 
     public SignupState(SignupState copy) {
         username = copy.username;
@@ -15,6 +16,7 @@ public class SignupState {
         passwordError = copy.passwordError;
         repeatPassword = copy.repeatPassword;
         repeatPasswordError = copy.repeatPasswordError;
+        defaultAddress = copy.defaultAddress;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -77,4 +79,7 @@ public class SignupState {
                 ", repeatPassword='" + repeatPassword + '\'' +
                 '}';
     }
+
+    public String getDefaultAddress() {return defaultAddress;}
+    public void setDefaultAddress(String defaultAddress) {this.defaultAddress = defaultAddress;}
 }
