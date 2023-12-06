@@ -4,13 +4,13 @@ import data_access.FileUserDataAccessObject;
 import data_access.InMemorySearchDataAccessObject;
 import entity.CommonUserFactory;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.login.LoginViewModel;
 import interface_adapter.results.ResultsViewModel;
 import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchViewModel;
+import interface_adapter.signup.SignupViewModel;
 import use_case.search.SearchDataAccessInterface;
-import view.ResultsView;
-import view.SearchView;
-import view.ViewManager;
+import view.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,10 +33,25 @@ public class Main {
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         new ViewManager(views, cardLayout, viewManagerModel);
 
+        LoginViewModel loginViewModel = new LoginViewModel();
+        SignupViewModel signupViewModel = new SignupViewModel();
         SearchViewModel searchViewModel = new SearchViewModel();
         ResultsViewModel resultsViewModel = new ResultsViewModel();
 
+        FileUserDataAccessObject userDataAccessObject;
+        try {
+            userDataAccessObject = new FileUserDataAccessObject("./users.csv", new CommonUserFactory());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         SearchDataAccessInterface searchDataAccessInterface = new InMemorySearchDataAccessObject();
+
+        SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject);
+        views.add(signupView, signupView.viewName);
+
+        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, searchViewModel, userDataAccessObject);
+        views.add(loginView, loginView.viewName);
 
         SearchView searchView = SearchUseCaseFactory.create(viewManagerModel,searchViewModel,resultsViewModel,searchDataAccessInterface);
         views.add(searchView, searchView.viewName);
@@ -46,7 +61,7 @@ public class Main {
         views.add(resultsView, resultsView.viewName);
 
 
-        viewManagerModel.setActiveView(searchView.viewName);
+        viewManagerModel.setActiveView(signupView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.pack();
