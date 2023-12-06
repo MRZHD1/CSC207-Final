@@ -33,7 +33,7 @@ public class ResultsViewTest {
 
     @Test
     public void testActionPerformedWhenButtonClicked() {
-        // Arrange
+
         ActionEvent actionEvent = new ActionEvent(new Object(), ActionEvent.ACTION_PERFORMED, "TestAction");
 
         resultsView.actionPerformed(actionEvent);

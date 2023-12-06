@@ -21,7 +21,6 @@ public class SearchPresenter implements SearchOutputBoundary {
 
     @Override
     public void prepareSuccessView(SearchOutputData response) {
-        // On success, switch to the results view.
 
         ResultsState resultsState = resultsViewModel.getState();
         resultsState.setResults(response.getResults());
