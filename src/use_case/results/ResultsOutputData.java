@@ -1,14 +1,12 @@
-package use_case.Specific;
+package use_case.results;
 
 import entity.DetailedPlace;
 
-import java.util.ArrayList;
-
-public class SpecificOutputData {
+public class ResultsOutputData {
 
     private final DetailedPlace detailedPlace;
 
-    public SpecificOutputData(DetailedPlace detailedPlace){
+    public ResultsOutputData(DetailedPlace detailedPlace){
 
         this.detailedPlace = detailedPlace;
 

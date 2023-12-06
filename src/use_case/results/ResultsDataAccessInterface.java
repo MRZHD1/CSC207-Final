@@ -1,7 +1,7 @@
-package use_case.Specific;
+package use_case.results;
 import entity.DetailedPlace;
 
-public interface SpecificDataAccessInterface {
+public interface ResultsDataAccessInterface {
 
 
     void save(DetailedPlace detailedPlace);
