@@ -25,7 +25,7 @@ public class CommonPlaceTest {
         try (FileWriter writer = new FileWriter(keyFile)) {
             writer.write("dummyApiKey");
         }
-        // Set the system property to use the temporary key file
+
         System.setProperty("user.dir", tempDir.toString());
         commonPlace = new CommonPlace(validAddress);
     }
@@ -33,10 +33,10 @@ public class CommonPlaceTest {
 
     @Test
     public void testGetCoordinates() {
-        // Act
+
         String coordinates = commonPlace.getCoordinates();
-        // Assert
-        Assertions.assertNotNull(coordinates, "Coordinates should not be null after object creation");
+
+        Assertions.assertNotNull(coordinates, "Coordinates should not be null");
     }
 
     @Test
