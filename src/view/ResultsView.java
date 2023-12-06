@@ -110,8 +110,7 @@ public class ResultsView extends JPanel implements ActionListener, PropertyChang
     }
 
     void handleNextButtonClicked() {
-        // Handle the next button click event here
-        System.out.println("Next button clicked");
-        // Add your logic for the next button functionality
+
+        System.out.println("kdsfkjasdufkdasfh");
     }
 }

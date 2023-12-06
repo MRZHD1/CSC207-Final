@@ -2,6 +2,7 @@ package use_case.results;
 
 import entity.DetailedPlace;
 
+
 public class ResultsOutputData {
 
     private final DetailedPlace detailedPlace;
@@ -12,7 +13,8 @@ public class ResultsOutputData {
 
     }
 
-    public DetailedPlace getDetailedPlace() {
+    public DetailedPlace getSpecific() {
         return detailedPlace;
     }
+
 }
