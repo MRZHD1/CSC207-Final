@@ -2,16 +2,16 @@ package use_case.login;
 
 public class LoginOutputData {
 
-    private final String username;
+    private final String defaultAddress;
     private boolean useCaseFailed;
 
-    public LoginOutputData(String username, boolean useCaseFailed) {
-        this.username = username;
+    public LoginOutputData(String defaultAddress, boolean useCaseFailed) {
+        this.defaultAddress = defaultAddress;
         this.useCaseFailed = useCaseFailed;
     }
 
-    public String getUsername() {
-        return username;
+    public String getDefaultAddress() {
+        return defaultAddress;
     }
 
 }

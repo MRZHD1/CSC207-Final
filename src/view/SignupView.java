@@ -25,6 +25,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
     private final JButton signUp;
     private final JButton cancel;
+    private final JButton login;
 
     public SignupView(SignupController controller, SignupViewModel signupViewModel) {
 
@@ -47,6 +48,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         JPanel buttons = new JPanel();
         signUp = new JButton(SignupViewModel.SIGNUP_BUTTON_LABEL);
         buttons.add(signUp);
+        login = new JButton("Login");
+        buttons.add(login);
         cancel = new JButton(SignupViewModel.CANCEL_BUTTON_LABEL);
         buttons.add(cancel);
 
@@ -70,12 +73,15 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         );
 
 
-        cancel.addActionListener(this);
-
-        // This makes a new KeyListener implementing class, instantiates it, and
-        // makes it listen to keystrokes in the usernameInputField.
-        //
-        // Notice how it has access to instance variables in the enclosing class!
+        login.addActionListener(
+            new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    if (evt.getSource().equals(login)) {
+                        signupController.forceLogin();
+                    }
+                }
+            }
+        );
         usernameInputField.addKeyListener(
                 new KeyListener() {
                     @Override

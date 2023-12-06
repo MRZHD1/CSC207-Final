@@ -95,6 +95,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
      */
     @Override
     public boolean existsByName(String identifier) {
+        System.out.println(accounts);
         return accounts.containsKey(identifier);
     }
 

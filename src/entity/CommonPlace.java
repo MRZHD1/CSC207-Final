@@ -15,10 +15,15 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class CommonPlace implements Place {
-    private final String address;
-    private final String coordinates;
+    private String address;
+    private String coordinates;
 
     public CommonPlace(String address) {
+        if (address == "null") {
+            this.address = "null";
+            this.coordinates = "null";
+            return;
+        }
         this.address = URLEncoder.encode(address, StandardCharsets.UTF_8);
         try {
             this.coordinates = setCoordinates(this.address);
@@ -26,6 +31,9 @@ public class CommonPlace implements Place {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
+        } catch (org.json.JSONException e) {
+            this.address = "null";
+            this.coordinates = "null";
         }
     }
 

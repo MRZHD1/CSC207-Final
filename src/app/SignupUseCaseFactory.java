@@ -1,8 +1,6 @@
 package app;
 
 import data_access.FileUserDataAccessObject;
-import interface_adapter.clear_users.ClearController;
-import interface_adapter.clear_users.ClearPresenter;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;
@@ -47,12 +45,5 @@ public class SignupUseCaseFactory {
                 userDataAccessObject, signupOutputBoundary, userFactory);
 
         return new SignupController(userSignupInteractor);
-    }
-    public static ClearController createClearController(ViewManagerModel viewManagerModel, SignupViewModel signupViewModel, LoginViewModel loginViewModel, ClearUserDataAccessInterface userDataAccessObject){
-        ClearOutputBoundary clearOutputBoundary = new ClearPresenter(viewManagerModel, signupViewModel, loginViewModel);
-
-        ClearInputBoundary clearInteractor = new ClearInteractor(userDataAccessObject, clearOutputBoundary);
-        return new ClearController(clearInteractor);
-
     }
 }
