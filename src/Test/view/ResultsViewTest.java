@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.io.ByteArrayOutputStream;
@@ -43,39 +44,41 @@ public class ResultsViewTest {
 
 
     @Test
-    public void testJRadioButtonsSelection(){
-
-
+    public void testJRadioButtonsSelection() {
         ResultsState resultsState = new ResultsState();
 
-        // How do I make the detailed place object with JSON????
-        String str1 = "{\"Address\":{\"formattedAddress\":\"address\"},\"entityType\":\"Restaurant\",\"name\":\"Starbucks\",\"Website\":\"https://www.starbucks.com/store-locator/store/1008913/\",\"point\":{\"coordinates\":[38.89933014,-77.026474],\"type\":\"Point\"}}"
-        String str2 = "{\"Address\":{\"formattedAddress\":\"address\"},\"entityType\":\"Restaurant\",\"name\":\"Starbucks\",\"Website\":\"https://www.starbucks.com/store-locator/store/1008913/\",\"point\":{\"coordinates\":[38.89933014,-77.026474],\"type\":\"Point\"}}"
-        JSONObject place = new JSONObject(str1);
-        JSONObject place2 = new JSONObject(str2)
-        DetailedPlace place1 = new DetailedPlace(place);
-        DetailedPlace place2 = new DetailedPlace();
+        String str1 = "{\"Address\":{\"formattedAddress\":\"address\"},\"entityType\":\"Restaurant\",\"name\":\"Starbucks\",\"Website\":\"https://www.starbucks.com/store-locator/store/1008913/\",\"geocodePoints\":[{\"calculationMethod\":\"Rooftop\",\"coordinates\":[38.89933014,-77.026474],\"type\":\"Point\"}]}";
+        String str2 = "{\"Address\":{\"formattedAddress\":\"address\"},\"entityType\":\"Restaurant\",\"name\":\"McDonald's\",\"Website\":\"https://www.mcdonalds.com/\",\"geocodePoints\":[{\"calculationMethod\":\"Rooftop\",\"coordinates\":[40.712776,-74.005974],\"type\":\"Point\"}]}";
+        JSONObject place1 = new JSONObject(str1);
+        JSONObject place2 = new JSONObject(str2);
+        DetailedPlace dummy1 = new DetailedPlace(place1);
+        DetailedPlace dummy2 = new DetailedPlace(place2);
 
-        resultsState.getResults().add(place1);
-        resultsState.getResults().add(place2);
+        resultsState.getResults().add(dummy1);
+        resultsState.getResults().add(dummy2);
         resultsView.propertyChange(new PropertyChangeEvent(this, "state", null, resultsState));
 
         // Simulate selecting the first radio button
-        JRadioButton radioButton1 = (JRadioButton) resultsView.getComponent(4);
-        radioButton1.setSelected(true);
+        JRadioButton radioButton1 = null;
+        for (Component component : resultsView.getComponents()) {
+            if (component instanceof JPanel) {
+                JPanel placePanel = (JPanel) component;
+                for (Component innerComponent : placePanel.getComponents()) {
+                    if (innerComponent instanceof JRadioButton) {
+                        radioButton1 = (JRadioButton) innerComponent;
+                        break;
+                    }
+                }
+            }
+        }
+        if (radioButton1 != null) {
+            radioButton1.setSelected(true);
+            resultsView.handleRadioButtonSelection(dummy1);
+        }
 
-
-        resultsView.handleRadioButtonSelection(place1);
-
-
-        String expectedOutput = "Selected Place: Place 1";
+        String expectedOutput = "Selected Place: Starbucks";
         assertTrue(outContent.toString().contains(expectedOutput),
                 "Expected output to contain: " + expectedOutput);
-
     }
-
-
-
-
 
 }
