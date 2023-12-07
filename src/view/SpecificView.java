@@ -19,6 +19,8 @@ public class SpecificView extends JPanel implements ActionListener, PropertyChan
 
     private JButton quitButton;
 
+    private JButton quitButton2;
+
     public SpecificView(SpecificViewModel specificViewModel) {
         this.specificViewModel = specificViewModel;
         this.specificViewModel.addPropertyChangeListener(this);
@@ -26,11 +28,6 @@ public class SpecificView extends JPanel implements ActionListener, PropertyChan
         quitButton = new JButton("Quit");
         quitButton.addActionListener(this);
         quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        // Add some space between the detailedPlace and the quitButton
-        quitButton.setBorder(new EmptyBorder(700, 0, 0, 0));
-
-        add(quitButton);
 
         JLabel title = new JLabel("Website");
         title.setHorizontalAlignment(JLabel.CENTER);
