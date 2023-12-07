@@ -6,11 +6,13 @@ import entity.CommonUserFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.results.ResultsViewModel;
-import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.signup.SignupViewModel;
+import interface_adapter.specific.SpecificViewModel;
+import use_case.results.ResultsDataAccessInterface;
 import use_case.search.SearchDataAccessInterface;
 import view.*;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +25,7 @@ public class Main {
 
         JFrame application = new JFrame("Place Search");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        application.setPreferredSize(new Dimension(700, 550));
+        application.setPreferredSize(new Dimension(700, 800));
 
         CardLayout cardLayout = new CardLayout();
 
@@ -56,9 +58,14 @@ public class Main {
         SearchView searchView = SearchUseCaseFactory.create(viewManagerModel,searchViewModel,resultsViewModel,searchDataAccessInterface);
         views.add(searchView, searchView.viewName);
 
+        SpecificViewModel specificViewModel = new SpecificViewModel();
 
-        ResultsView resultsView = new ResultsView(resultsViewModel);
+        ResultsView resultsView = ResultsUseCaseFactory.create(viewManagerModel, resultsViewModel,
+                specificViewModel);
         views.add(resultsView, resultsView.viewName);
+
+        SpecificView specificView = new SpecificView(specificViewModel);
+        views.add(specificView, specificView.viewName);
 
 
         viewManagerModel.setActiveView(signupView.viewName);

@@ -18,4 +18,6 @@ public class SearchController {
 
         searchUseCaseInteractor.execute(searchInput);
     }
+
+
 }
