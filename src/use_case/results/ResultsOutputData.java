@@ -15,8 +15,7 @@ public class ResultsOutputData {
 
     }
 
-    public ArrayList<DetailedPlace> getSpecific() {
+    public DetailedPlace getDetailedPlace() {
         return detailedPlace;
     }
-
 }

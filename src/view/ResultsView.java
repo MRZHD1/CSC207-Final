@@ -1,6 +1,8 @@
 package view;
 
+import entity.CommonUser;
 import entity.DetailedPlace;
+import interface_adapter.results.ResultsController;
 import interface_adapter.results.ResultsState;
 import interface_adapter.results.ResultsViewModel;
 
@@ -10,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.ButtonGroup;
 
@@ -18,12 +21,15 @@ public class ResultsView extends JPanel implements ActionListener, PropertyChang
     public final String viewName = "results";
 
     private final ResultsViewModel resultsViewModel;
+    private final ResultsController resultsController;
     final JButton quit;
     final JButton nextButton;
+    public DetailedPlace selectedPlace;
 
-    public ResultsView(ResultsViewModel resultsViewModel) {
+    public ResultsView(ResultsViewModel resultsViewModel, ResultsController resultsController) {
         this.resultsViewModel = resultsViewModel;
         this.resultsViewModel.addPropertyChangeListener(this);
+        this.resultsController = resultsController;
 
         JLabel title = new JLabel("List of Queries");
         title.setHorizontalAlignment(JLabel.CENTER);
@@ -106,11 +112,17 @@ public class ResultsView extends JPanel implements ActionListener, PropertyChang
     void handleRadioButtonSelection(DetailedPlace selectedPlace) {
         // Do something with the radio button here
         System.out.println("Selected Place: " + selectedPlace.getName());
+        this.selectedPlace = selectedPlace;
         // i can extend this method to perform additional actions based on the selected place
     }
 
     void handleNextButtonClicked() {
-
-        System.out.println("kdsfkjasdufkdasfh");
+        try {
+            this.resultsController.execute(this.selectedPlace);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

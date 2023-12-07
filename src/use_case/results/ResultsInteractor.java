@@ -1,16 +1,11 @@
-package use_case.Specific;
+package use_case.results;
 import entity.DetailedPlace;
 import org.json.JSONArray;
 import use_case.results.ResultsDataAccessInterface;
 import use_case.results.ResultsInputBoundary;
 import use_case.results.ResultsInputData;
 import use_case.results.ResultsOutputBoundary;
-import use_case.search.SearchInputData;
-import use_case.search.SearchInteractor;
-import use_case.search.SearchOutputData;
 
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class ResultsInteractor implements ResultsInputBoundary {
 
@@ -25,7 +20,8 @@ public class ResultsInteractor implements ResultsInputBoundary {
     }
 
     public void execute(ResultsInputData resultsInput) {
-
+        ResultsOutputData resultsOutputData = new ResultsOutputData(resultsInput.getDetailedPlace());
+        resultsPresenter.prepareSuccessView(resultsOutputData);
     }
 
 }

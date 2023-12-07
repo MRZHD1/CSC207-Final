@@ -28,7 +28,7 @@ public class ResultsPresenter implements ResultsOutputBoundary{
     public void prepareSuccessView(ResultsOutputData response) {
 
         SpecificState specificState = specificViewModel.getState();
-        specificState.setSpecific(response.getSpecific());
+        specificState.setDetailedPlace(response.getDetailedPlace());
         this.specificViewModel.setState(specificState);
         this.specificViewModel.firePropertyChanged();
 

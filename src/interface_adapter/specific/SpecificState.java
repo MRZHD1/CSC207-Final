@@ -8,15 +8,15 @@ public class SpecificState {
 
     private String specificError = "";
 
-    private ArrayList<DetailedPlace> specific = new ArrayList<>();
+    private DetailedPlace detailedPlace = null;
 
     public SpecificState(){
     }
-    public ArrayList<DetailedPlace> getResults() {
-        return this.specific;
+    public DetailedPlace getDetailedPlace() {
+        return this.detailedPlace;
     }
-    public void setSpecific(ArrayList<DetailedPlace> results){
-        this.specific = specific;
+    public void setDetailedPlace(DetailedPlace detailedPlace){
+        this.detailedPlace = detailedPlace;
     }
 
     public String setResultsError(String resultsError) {

@@ -10,7 +10,6 @@ import javax.swing.ButtonGroup;
 
 import entity.DetailedPlace;
 import interface_adapter.results.ResultsState;
-import interface_adapter.results.ResultsViewModel;
 import interface_adapter.specific.SpecificState;
 import interface_adapter.specific.SpecificViewModel;
 
@@ -47,8 +46,10 @@ public class SpecificView extends JPanel implements ActionListener, PropertyChan
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        ResultsState state = (ResultsState) evt.getNewValue();
-        ArrayList<DetailedPlace> resultsArray = state.getResults();
+        SpecificState state = (SpecificState) evt.getNewValue();
+        DetailedPlace detailedPlace = state.getDetailedPlace();
+        System.out.println(detailedPlace.getName());
+
 
         ButtonGroup buttonGroup = new ButtonGroup();
 

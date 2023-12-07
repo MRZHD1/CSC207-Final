@@ -38,11 +38,11 @@ public class Main {
         SearchView searchView = SearchUseCaseFactory.create(viewManagerModel,searchViewModel,resultsViewModel,searchDataAccessInterface);
         views.add(searchView, searchView.viewName);
 
-
-        ResultsView resultsView = new ResultsView(resultsViewModel);
+        SpecificViewModel specificViewModel = new SpecificViewModel();
+        ResultsView resultsView = ResultsUseCaseFactory.create(viewManagerModel, resultsViewModel, specificViewModel);
         views.add(resultsView, resultsView.viewName);
 
-        SpecificView specificView = new SpecificView(new SpecificViewModel());
+        SpecificView specificView = new SpecificView(specificViewModel);
         views.add(specificView, specificView.viewName);
 
 
