@@ -2,10 +2,10 @@ package entity;
 
 public interface User {
 
-    String getUserName();
+    String getName();
 
-    String getUserPassword();
+    String getPassword();
 
-    String getUserAddy();
+    CommonPlace getUserPlace();
 
 }

@@ -82,8 +82,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
         fillInWithHomeCheckBox.addActionListener(e -> {
             if (fillInWithHomeCheckBox.isSelected()) {
                 // If the checkbox is selected, set the Location text to "my home address"
-                Location.setText("my home address");
-                String location = "my home address";
+                Location.setText("");
             } else {
                 // If the checkbox is deselected, clear the Location text field
                 Location.setText("");
@@ -108,6 +107,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         SearchState state = (SearchState) evt.getNewValue();
+        Location.setText(state.getDefaultAddress());
         if (state.getSearchError() != null) {
             JOptionPane.showMessageDialog(this, state.getSearchError());
         }

@@ -4,6 +4,7 @@ public class SearchState {
     private String query = "";
     private String location = "";
     private String searchError = "";
+    private String defaultAddress = "";
 
     public SearchState(SearchState copy) {
         query = copy.query;
@@ -25,6 +26,12 @@ public class SearchState {
 
     public String getSearchError() {
         return this.searchError;
+    }
+    public void setDefaultAddress(String defaultAddress) {
+        this.defaultAddress = defaultAddress;
+    }
+    public String getDefaultAddress(){
+        return defaultAddress;
     }
 
     public void setQuery(String query) {

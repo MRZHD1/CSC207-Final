@@ -1,6 +1,6 @@
 package view;
 
-import entity.CommonUser;
+import entity.*;
 import entity.DetailedPlace;
 import interface_adapter.results.ResultsController;
 import interface_adapter.results.ResultsState;

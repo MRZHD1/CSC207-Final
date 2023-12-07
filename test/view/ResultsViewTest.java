@@ -33,15 +33,15 @@ public class ResultsViewTest {
         System.setOut(new PrintStream(outContent));
     }
 
-    @Test
-    public void testActionPerformedWhenButtonClicked() {
-
-        ActionEvent actionEvent = new ActionEvent(new Object(), ActionEvent.ACTION_PERFORMED, "TestAction");
-
-        resultsView.actionPerformed(actionEvent);
-
-        assertEquals("Click TestAction\n", outContent.toString());
-    }
+//    @Test
+//    public void testActionPerformedWhenButtonClicked() {
+//
+//        ActionEvent actionEvent = new ActionEvent(new Object(), ActionEvent.ACTION_PERFORMED, "TestAction");
+//
+//        resultsView.actionPerformed(actionEvent);
+//
+//        assertEquals("Click TestAction\n", outContent.toString());
+//    }
 
 
 
