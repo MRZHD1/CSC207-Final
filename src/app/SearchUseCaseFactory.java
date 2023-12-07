@@ -28,7 +28,7 @@ public class SearchUseCaseFactory {
             SearchController searchController = createSearchUseCase(viewManagerModel, searchViewModel, resultsViewModel, userDataAccessObject);
             return new SearchView(searchController, searchViewModel);
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Could not open user data file.");
+            JOptionPane.showMessageDialog(null, "Internal Error! Please restart the program.");
         }
 
         return null;

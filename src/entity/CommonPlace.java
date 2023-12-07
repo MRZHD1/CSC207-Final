@@ -34,16 +34,20 @@ public class CommonPlace implements Place {
                 .uri(URI.create(locateURL))
                 .build();
         HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.statusCode());
         JSONObject jObject  = new JSONObject(response.body().toString());
-        String coordinates = jObject.getJSONArray("resourceSets").getJSONObject(0).getJSONArray("resources").getJSONObject(0).getJSONArray("geocodePoints").getJSONObject(0).get("coordinates").toString();
-        coordinates = coordinates.replace("[","").replace("]","")+",10000";
-        System.out.println(coordinates);
-        return coordinates;
+        String coordinates = jObject.getJSONArray("resourceSets").getJSONObject(0)
+                .getJSONArray("resources").getJSONObject(0).getJSONArray("geocodePoints")
+                .getJSONObject(0).get("coordinates").toString();
+        return coordinates.replace("[","").replace("]","")+",10000";
     }
 
     @Override
     public String getCoordinates() {
         return this.coordinates;
+    }
+
+    @Override
+    public String getAddress() {
+        return this.address;
     }
 }

@@ -1,30 +1,26 @@
-package interface_adapter.search;
+package interface_adapter.specific;
 
 import interface_adapter.ViewModel;
-
+import interface_adapter.specific.SpecificState;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class SearchViewModel extends ViewModel {
-    public static final String TITLE_LABEL = "Search View";
+public class SpecificViewModel extends ViewModel {
 
-    public static final String LOCATION_LABEL = "Enter location";
-    public static final String QUERY_LABEL = "Enter subject";
 
-    public static final String NEXT_BUTTON_LABEL = "Next";
+    private SpecificState state = new SpecificState();
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-
-    private SearchState state = new SearchState();
-
-    public SearchViewModel() {
-        super("search");
+    public SpecificViewModel() {
+        super("specific");
     }
 
-    public void setState(SearchState state) {
+
+    public void setState(SpecificState state) {
         this.state = state;
     }
+
     public void firePropertyChanged() {
         support.firePropertyChange("state", null, this.state);
     }
@@ -33,7 +29,11 @@ public class SearchViewModel extends ViewModel {
         support.addPropertyChangeListener(listener);
     }
 
-    public SearchState getState() {
+    public SpecificState getState() {
         return this.state;
     }
+
+
+
+
 }

@@ -24,7 +24,16 @@ public class SearchState {
     }
 
     public String getSearchError() {
-        return searchError;
+        return this.searchError;
     }
 
+    public void setQuery(String query) {
+
+        this.query = query;
+
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 }

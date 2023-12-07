@@ -8,9 +8,10 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
 public class ResultsViewModel extends ViewModel {
-    public final String TITLE_LABEL = "Search Results";
 
     private ResultsState state = new ResultsState();
+
+    public static final String QUIT_BUTTON_LABEL = "Quit";
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
@@ -31,7 +32,7 @@ public class ResultsViewModel extends ViewModel {
     }
 
     public ResultsState getState() {
-        return state;
+        return this.state;
     }
 
 
