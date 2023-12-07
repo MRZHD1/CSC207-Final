@@ -1,6 +1,7 @@
 package view;
 
 import entity.DetailedPlace;
+import interface_adapter.results.ResultsController;
 import interface_adapter.results.ResultsState;
 import interface_adapter.results.ResultsViewModel;
 import org.json.JSONObject;
@@ -27,7 +28,8 @@ public class ResultsViewTest {
     @BeforeEach
     public void setUp() {
         ResultsViewModel resultsViewModel = new ResultsViewModel();
-        resultsView = new ResultsView(resultsViewModel);
+        ResultsController resultsController = null; // Replace with your ResultsController object if available
+        resultsView = new ResultsView(resultsViewModel, resultsController);
         System.setOut(new PrintStream(outContent));
     }
 

@@ -17,7 +17,7 @@ public class SpecificView extends JPanel implements ActionListener, PropertyChan
     public final String viewName = "specific";
     private final SpecificViewModel specificViewModel;
 
-    private JButton quitButton;
+    public JButton quitButton;
 
     private JButton quitButton2;
 

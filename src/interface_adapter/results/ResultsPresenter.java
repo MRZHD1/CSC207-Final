@@ -1,12 +1,9 @@
 package interface_adapter.results;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.search.SearchState;
-import interface_adapter.search.SearchViewModel;
 import interface_adapter.specific.SpecificState;
 import interface_adapter.specific.SpecificViewModel;
 import use_case.results.ResultsOutputBoundary;
 import use_case.results.ResultsOutputData;
-import use_case.search.SearchOutputData;
 
 public class ResultsPresenter implements ResultsOutputBoundary{
 

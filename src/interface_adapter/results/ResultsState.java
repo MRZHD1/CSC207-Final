@@ -24,4 +24,10 @@ public class ResultsState {
     public String setResultsError(String resultsError) {
         return this.resultsError;
     }
+
+    public String getResultsError() {
+
+        return this.resultsError;
+
+    }
 }
