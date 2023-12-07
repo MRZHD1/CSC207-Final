@@ -48,7 +48,6 @@ public class SpecificView extends JPanel implements ActionListener, PropertyChan
         SpecificState state = (SpecificState) evt.getNewValue();
         DetailedPlace detailedPlace = state.getDetailedPlace();
 
-        // Clear existing components
         removeAll();
 
         JLabel name = new JLabel(detailedPlace.getName());
@@ -57,13 +56,12 @@ public class SpecificView extends JPanel implements ActionListener, PropertyChan
 
         JPanel textPanel = new JPanel();
         textPanel.setLayout(new BorderLayout());
-        textPanel.add(name, BorderLayout.NORTH);  // Align name to the top
-        textPanel.add(website, BorderLayout.CENTER);  // Center website
+        textPanel.add(name, BorderLayout.NORTH);
+        textPanel.add(website, BorderLayout.CENTER);
         textPanel.add(address, BorderLayout.SOUTH);
 
         add(textPanel);
 
-        // Revalidate and repaint the panel
         revalidate();
         repaint();
     }
