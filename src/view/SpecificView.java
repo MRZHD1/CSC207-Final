@@ -48,10 +48,9 @@ public class SpecificView extends JPanel implements ActionListener, PropertyChan
     public void propertyChange(PropertyChangeEvent evt) {
         SpecificState state = (SpecificState) evt.getNewValue();
         DetailedPlace detailedPlace = state.getDetailedPlace();
-        System.out.println(detailedPlace.getName());
 
 
-        ButtonGroup buttonGroup = new ButtonGroup();
+
 
     }
 

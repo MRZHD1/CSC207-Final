@@ -5,6 +5,7 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.results.ResultsViewModel;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.specific.SpecificViewModel;
+import use_case.results.ResultsDataAccessInterface;
 import use_case.search.SearchDataAccessInterface;
 import view.ResultsView;
 import view.SearchView;
@@ -39,7 +40,9 @@ public class Main {
         views.add(searchView, searchView.viewName);
 
         SpecificViewModel specificViewModel = new SpecificViewModel();
-        ResultsView resultsView = ResultsUseCaseFactory.create(viewManagerModel, resultsViewModel, specificViewModel);
+
+        ResultsView resultsView = ResultsUseCaseFactory.create(viewManagerModel, resultsViewModel,
+                specificViewModel);
         views.add(resultsView, resultsView.viewName);
 
         SpecificView specificView = new SpecificView(specificViewModel);

@@ -10,13 +10,10 @@ import use_case.results.ResultsOutputBoundary;
 public class ResultsInteractor implements ResultsInputBoundary {
 
 
-    final ResultsDataAccessInterface resultsAccessObject;
-
     final ResultsOutputBoundary resultsPresenter;
 
-    public ResultsInteractor(ResultsDataAccessInterface resultsAccessObject, ResultsOutputBoundary resultsPresenter){
+    public ResultsInteractor(ResultsOutputBoundary resultsPresenter){
         this.resultsPresenter = resultsPresenter;
-        this.resultsAccessObject = resultsAccessObject;
     }
 
     public void execute(ResultsInputData resultsInput) {

@@ -23,16 +23,13 @@ public class ResultsUseCaseFactory {
 
     private ResultsUseCaseFactory(){}
 
-    public static SpecificView create(ViewManagerModel viewManagerModel,
+    public static ResultsView create(ViewManagerModel viewManagerModel,
                                       ResultsViewModel resultsViewModel,
-                                      SpecificViewModel specificViewModel,
-                                      ResultsDataAccessInterface resultsDataAccessObject){
-
+                                      SpecificViewModel specificViewModel){
 
         try {
-            ResultsController resultsController = createResultsUseCase(viewManagerModel, resultsViewModel, specificViewModel, resultsDataAccessObject);
+            ResultsController resultsController = createResultsUseCase(viewManagerModel, resultsViewModel, specificViewModel);
             return new ResultsView(resultsViewModel, resultsController);
-            // DO WE PROVIDE RESULTSVIEW HERE OR SPECIFIC VIEW?
 
 
         } catch (IOException e) {
@@ -41,21 +38,16 @@ public class ResultsUseCaseFactory {
 
         return null;
 
-
-
     }
 
 
     private static ResultsController createResultsUseCase(
             ViewManagerModel viewManagerModel,
             ResultsViewModel resultsViewModel,
-            SpecificViewModel specificViewModel,
-            ResultsDataAccessInterface resultsDataAccessObject) throws IOException {
+            SpecificViewModel specificViewModel) throws IOException {
 
-        // Notice how we pass this method's parameters to the Presenter.
         ResultsOutputBoundary resultsOutputBoundary = new ResultsPresenter(resultsViewModel, specificViewModel, viewManagerModel);
-        ResultsInputBoundary resultsInputBoundary = new ResultsInteractor(
-                resultsDataAccessObject, resultsOutputBoundary);
+        ResultsInputBoundary resultsInputBoundary = new ResultsInteractor(resultsOutputBoundary);
 
         return new ResultsController(resultsInputBoundary);
     }
